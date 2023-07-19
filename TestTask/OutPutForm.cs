@@ -70,30 +70,40 @@
                 Label numberLabel = new Label();
                 numberLabel.Dock = DockStyle.Fill;
                 numberLabel.Text = (rowIndex).ToString();
+                numberLabel.TextAlign = ContentAlignment.TopCenter;
                 OutPutTable.Controls.Add(numberLabel, 0, rowIndex);
 
                 Label keyLabel = new Label();
                 keyLabel.Dock = DockStyle.Fill;
                 keyLabel.Text = key;
+                keyLabel.TextAlign = ContentAlignment.TopCenter;
                 OutPutTable.Controls.Add(keyLabel, 1, rowIndex);
 
                 Label value1Label = new Label();
                 value1Label.Dock = DockStyle.Fill;
                 value1Label.Text = value.ToString();
+                value1Label.TextAlign = ContentAlignment.TopCenter;
                 OutPutTable.Controls.Add(value1Label, 2, rowIndex);
 
                 Label value2Label = new Label();
                 value2Label.Dock = DockStyle.Fill;
                 value2Label.Text = secondValue;
+                value2Label.TextAlign = ContentAlignment.TopCenter;
                 OutPutTable.Controls.Add(value2Label, 3, rowIndex);
 
                 Label value3Label = new Label();
                 value3Label.Dock = DockStyle.Fill;
                 value3Label.Text = totalValue;
+                value3Label.TextAlign = ContentAlignment.TopCenter;
                 OutPutTable.Controls.Add(value3Label, 4, rowIndex);
 
                 rowIndex++;
             }
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

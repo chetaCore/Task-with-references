@@ -92,6 +92,8 @@ namespace TestTask
             // 
             // OutPutTable
             // 
+            OutPutTable.AutoScroll = true;
+            OutPutTable.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
             OutPutTable.ColumnCount = 5;
             OutPutTable.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 40F));
             OutPutTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
@@ -114,9 +116,9 @@ namespace TestTask
             // label1
             // 
             label1.Dock = DockStyle.Fill;
-            label1.Location = new Point(3, 0);
+            label1.Location = new Point(4, 1);
             label1.Name = "label1";
-            label1.Size = new Size(34, 387);
+            label1.Size = new Size(34, 385);
             label1.TabIndex = 0;
             label1.Text = "No\r\nп.п.\r\n";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -124,9 +126,9 @@ namespace TestTask
             // label3
             // 
             label3.Dock = DockStyle.Fill;
-            label3.Location = new Point(43, 0);
+            label3.Location = new Point(45, 1);
             label3.Name = "label3";
-            label3.Size = new Size(143, 387);
+            label3.Size = new Size(141, 385);
             label3.TabIndex = 1;
             label3.Text = "Ответственный\r\nисполнитель";
             label3.TextAlign = ContentAlignment.MiddleCenter;
@@ -134,9 +136,9 @@ namespace TestTask
             // label4
             // 
             label4.Dock = DockStyle.Fill;
-            label4.Location = new Point(192, 0);
+            label4.Location = new Point(193, 1);
             label4.Name = "label4";
-            label4.Size = new Size(143, 387);
+            label4.Size = new Size(141, 385);
             label4.TabIndex = 2;
             label4.Text = "Количество\r\nнеисполненных\r\nвходящих документов";
             label4.TextAlign = ContentAlignment.MiddleCenter;
@@ -144,9 +146,9 @@ namespace TestTask
             // label5
             // 
             label5.Dock = DockStyle.Fill;
-            label5.Location = new Point(490, 0);
+            label5.Location = new Point(489, 1);
             label5.Name = "label5";
-            label5.Size = new Size(144, 387);
+            label5.Size = new Size(144, 385);
             label5.TabIndex = 3;
             label5.Text = "Общее количество\r\nдокументов и\r\nобращений";
             label5.TextAlign = ContentAlignment.MiddleCenter;
@@ -154,12 +156,13 @@ namespace TestTask
             // label6
             // 
             label6.Dock = DockStyle.Fill;
-            label6.Location = new Point(341, 0);
+            label6.Location = new Point(341, 1);
             label6.Name = "label6";
-            label6.Size = new Size(143, 387);
+            label6.Size = new Size(141, 385);
             label6.TabIndex = 4;
             label6.Text = "Количество\r\nнеисполненных\r\nписьменных\r\nобращений граждан";
             label6.TextAlign = ContentAlignment.MiddleCenter;
+            label6.Click += label6_Click;
             // 
             // panel3
             // 

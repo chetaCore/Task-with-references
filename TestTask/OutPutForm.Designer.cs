@@ -47,6 +47,7 @@ namespace TestTask
             LabelRKKSum = new Label();
             LabelTotalSum = new Label();
             label8 = new Label();
+            SaveButton = new Button();
             panel1.SuspendLayout();
             panel4.SuspendLayout();
             OutPutTable.SuspendLayout();
@@ -162,11 +163,11 @@ namespace TestTask
             label6.TabIndex = 4;
             label6.Text = "Количество\r\nнеисполненных\r\nписьменных\r\nобращений граждан";
             label6.TextAlign = ContentAlignment.MiddleCenter;
-            label6.Click += label6_Click;
             // 
             // panel3
             // 
             panel3.BackColor = SystemColors.ControlLight;
+            panel3.Controls.Add(SaveButton);
             panel3.Controls.Add(LabelData);
             panel3.Dock = DockStyle.Bottom;
             panel3.Location = new Point(0, 579);
@@ -242,6 +243,17 @@ namespace TestTask
             label8.TabIndex = 0;
             label8.Text = "Спарвка о неисполненных документах и обращениях граждан";
             // 
+            // SaveButton
+            // 
+            SaveButton.BackColor = SystemColors.AppWorkspace;
+            SaveButton.Location = new Point(12, 41);
+            SaveButton.Name = "SaveButton";
+            SaveButton.Size = new Size(79, 23);
+            SaveButton.TabIndex = 1;
+            SaveButton.Text = "Сохранить";
+            SaveButton.UseVisualStyleBackColor = false;
+            SaveButton.Click += SaveButton_Click;
+            // 
             // OutPutForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -281,5 +293,6 @@ namespace TestTask
         private Label LabelSortType;
         private Label LabelObrSum;
         private Label LabelRKKSum;
+        private Button SaveButton;
     }
 }

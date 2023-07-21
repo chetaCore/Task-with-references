@@ -32,6 +32,8 @@
             ObrPath = new TextBox();
             StartButton = new Button();
             panel2 = new Panel();
+            SelectPathObrButton = new Button();
+            SelectRKKPathButton = new Button();
             RadioTotal = new RadioButton();
             RadioObr = new RadioButton();
             RadioRkk = new RadioButton();
@@ -48,7 +50,6 @@
             RKKPath.Name = "RKKPath";
             RKKPath.Size = new Size(184, 23);
             RKKPath.TabIndex = 0;
-            RKKPath.Text = "C:\\РКК.txt";
             // 
             // ObrPath
             // 
@@ -57,16 +58,15 @@
             ObrPath.Name = "ObrPath";
             ObrPath.Size = new Size(184, 23);
             ObrPath.TabIndex = 1;
-            ObrPath.Text = "C:\\Обращения.txt";
             // 
             // StartButton
             // 
             StartButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            StartButton.Location = new Point(34, 155);
+            StartButton.Location = new Point(34, 150);
             StartButton.Name = "StartButton";
-            StartButton.Size = new Size(75, 23);
+            StartButton.Size = new Size(80, 23);
             StartButton.TabIndex = 2;
-            StartButton.Text = "Начать\r\n";
+            StartButton.Text = "Показать";
             StartButton.UseVisualStyleBackColor = true;
             StartButton.Click += StartButton_Click;
             // 
@@ -74,6 +74,8 @@
             // 
             panel2.AutoSize = true;
             panel2.BackColor = SystemColors.ActiveBorder;
+            panel2.Controls.Add(SelectPathObrButton);
+            panel2.Controls.Add(SelectRKKPathButton);
             panel2.Controls.Add(RadioTotal);
             panel2.Controls.Add(RadioObr);
             panel2.Controls.Add(RadioRkk);
@@ -88,6 +90,29 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(593, 198);
             panel2.TabIndex = 4;
+            // 
+            // SelectPathObrButton
+            // 
+            SelectPathObrButton.ImageAlign = ContentAlignment.MiddleRight;
+            SelectPathObrButton.Location = new Point(6, 111);
+            SelectPathObrButton.Name = "SelectPathObrButton";
+            SelectPathObrButton.Size = new Size(22, 23);
+            SelectPathObrButton.TabIndex = 10;
+            SelectPathObrButton.Text = "...";
+            SelectPathObrButton.UseVisualStyleBackColor = true;
+            SelectPathObrButton.Click += SelectPathObrButton_Click;
+            // 
+            // SelectRKKPathButton
+            // 
+            SelectRKKPathButton.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            SelectRKKPathButton.ImageAlign = ContentAlignment.MiddleRight;
+            SelectRKKPathButton.Location = new Point(6, 42);
+            SelectRKKPathButton.Name = "SelectRKKPathButton";
+            SelectRKKPathButton.Size = new Size(22, 23);
+            SelectRKKPathButton.TabIndex = 9;
+            SelectRKKPathButton.Text = "...";
+            SelectRKKPathButton.UseVisualStyleBackColor = true;
+            SelectRKKPathButton.Click += SelectRKKPathButton_Click;
             // 
             // RadioTotal
             // 
@@ -157,13 +182,13 @@
             label6.Text = "Введите путь к РКК документу";
             label6.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // Form1
+            // StartForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(593, 198);
             Controls.Add(panel2);
-            Name = "Form1";
+            Name = "StartForm";
             Text = "Form1";
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
@@ -183,5 +208,7 @@
         private RadioButton RadioRkk;
         private RadioButton RadioName;
         private RadioButton RadioTotal;
+        private Button SelectPathObrButton;
+        private Button SelectRKKPathButton;
     }
 }

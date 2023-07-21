@@ -6,6 +6,10 @@
         private string _obrPath;
         private int _sortNum;
 
+        private Dictionary<string, int> _rKKPerformers;
+        private Dictionary<string, int> _obrPerformers;
+        private Dictionary<string, int> _totalPerformers;
+
         public OutPutForm(string rkkPath, string obrPath, int sortNum)
         {
             InitializeComponent();
@@ -16,12 +20,12 @@
 
         private void OutPutForm_Load(object sender, EventArgs e)
         {
-            (Dictionary<string, int> RKKperformers, Dictionary<string, int> ObrPerformers, Dictionary<string, int> totalPerformers)
+            (_rKKPerformers, _obrPerformers, _totalPerformers)
                 = SearchPerformrs.GetPerforms(_rkkPath, _obrPath);
 
-            LabelTotalSum.Text = $"Не исполнено в срок {SearchPerformrs.CalculateTotalSum(totalPerformers)} документов, из них:";
-            LabelRKKSum.Text = $"- количество неисполненных входящих документов: {SearchPerformrs.CalculateTotalSum(RKKperformers)};";
-            LabelObrSum.Text = $"- количество неисполненных письменных обращений граждан: {SearchPerformrs.CalculateTotalSum(ObrPerformers)}.";
+            LabelTotalSum.Text = $"Не исполнено в срок {SearchPerformrs.CalculateTotalSum(_totalPerformers)} документов, из них:";
+            LabelRKKSum.Text = $"- количество неисполненных входящих документов: {SearchPerformrs.CalculateTotalSum(_rKKPerformers)};";
+            LabelObrSum.Text = $"- количество неисполненных письменных обращений граждан: {SearchPerformrs.CalculateTotalSum(_obrPerformers)}.";
 
             DateTime now = DateTime.Now;
 
@@ -32,22 +36,22 @@
             switch (_sortNum)
             {
                 case 0:
-                    (RKKperformers, ObrPerformers, totalPerformers) = SearchPerformrs.SortingByName(RKKperformers, ObrPerformers, totalPerformers);
+                    (_rKKPerformers, _obrPerformers, _totalPerformers) = SearchPerformrs.SortingByName(_rKKPerformers, _obrPerformers, _totalPerformers);
                     LabelSortType.Text = "Сортировка: по фамилии ответственного исполнителя.";
                     break;
 
                 case 1:
-                    (RKKperformers, ObrPerformers, totalPerformers) = SearchPerformrs.SortingByRkk(RKKperformers, ObrPerformers, totalPerformers);
+                    (_rKKPerformers, _obrPerformers, _totalPerformers) = SearchPerformrs.SortingByRkk(_rKKPerformers, _obrPerformers, _totalPerformers);
                     LabelSortType.Text = "Сортировка: по количеству РКК.";
                     break;
 
                 case 2:
-                    (RKKperformers, ObrPerformers, totalPerformers) = SearchPerformrs.SortingByObr(RKKperformers, ObrPerformers, totalPerformers);
+                    (_rKKPerformers, _obrPerformers, _totalPerformers) = SearchPerformrs.SortingByObr(_rKKPerformers, _obrPerformers, _totalPerformers);
                     LabelSortType.Text = "Сортировка: по количеству обращений.";
                     break;
 
                 case 3:
-                    (RKKperformers, ObrPerformers, totalPerformers) = SearchPerformrs.SortingByTotal(RKKperformers, ObrPerformers, totalPerformers);
+                    (_rKKPerformers, _obrPerformers, _totalPerformers) = SearchPerformrs.SortingByTotal(_rKKPerformers, _obrPerformers, _totalPerformers);
                     LabelSortType.Text = "Сортировка: по общему количеству документов.";
                     break;
 
@@ -57,13 +61,13 @@
 
             int rowIndex = OutPutTable.RowCount;
 
-            foreach (var kvp in RKKperformers)
+            foreach (var kvp in _rKKPerformers)
             {
                 string key = kvp.Key;
                 int value = kvp.Value;
 
-                string secondValue = ObrPerformers.ContainsKey(key) ? ObrPerformers[key].ToString() : "";
-                string totalValue = totalPerformers.ContainsKey(key) ? totalPerformers[key].ToString() : "";
+                string secondValue = _obrPerformers.ContainsKey(key) ? _obrPerformers[key].ToString() : "";
+                string totalValue = _totalPerformers.ContainsKey(key) ? _totalPerformers[key].ToString() : "";
 
                 OutPutTable.RowStyles.Add(new RowStyle(SizeType.AutoSize));
 
@@ -101,9 +105,38 @@
             }
         }
 
-        private void label6_Click(object sender, EventArgs e)
+        private void SaveButton_Click(object sender, EventArgs e)
         {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Word Document|*.docx";
+            saveFileDialog.Title = "Save Report";
+            saveFileDialog.FileName = "report.docx";
 
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string path = saveFileDialog.FileName;
+
+                switch (_sortNum)
+                {
+                    case 0:
+                        DocsFileCreator.GenerateReport(path, _rKKPerformers, _obrPerformers, _totalPerformers, "по фамилии ответственного исполнителя.");
+                        break;
+
+                    case 1:
+                        DocsFileCreator.GenerateReport(path, _rKKPerformers, _obrPerformers, _totalPerformers, "по количеству РКК.");
+                        break;
+
+                    case 2:
+                        DocsFileCreator.GenerateReport(path, _rKKPerformers, _obrPerformers, _totalPerformers, "по количеству обращений.");
+                        break;
+
+                    case 3:
+                        DocsFileCreator.GenerateReport(path, _rKKPerformers, _obrPerformers, _totalPerformers, "по общему количеству документов.");
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }
